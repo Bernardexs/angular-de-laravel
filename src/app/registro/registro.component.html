@@ -1,0 +1,78 @@
+
+
+<div class="container">
+    <form>
+    <div class="mb-3">
+      <label for="exampleInputEmail1" class="form-label">Descripcion</label>
+      <input type="text" class="form-control" #descripcion name="descripcion" id="exampleInputEmail1" aria-describedby="emailHelp">
+      @if(error){
+        {{error.descripcion}}
+
+      }
+
+</div>
+    <div class="mb-3">
+      <label for="exampleInputPassword1" class="form-label">Monto</label>
+      <input type="number" class="form-control" #monto name="monto" id="exampleInputPassword1" >
+      @if(error){
+        {{error.monto}}
+
+      }    </div>
+    <div class="mb-3">
+        <label for="exampleInputPassword2" class="form-label">Fecha de transaccion</label>
+        <input type="date" class="form-control" #fechaTrans name="fechaTrans" id="exampleInputPassword2">
+        @if(error){
+            {{error.fechaTransaccion}}
+    
+          }        
+
+      </div>
+      <select class="form-select" #categorias_id name="categorias_id" aria-label="Default select example">
+        <option selected>Categoria</option>
+
+        @for (item of datosC; track $index) {
+            <option value="{{item.id}}">{{item.nombre}}</option>
+          
+        }
+       
+      </select>
+      @if(error){
+        {{error.categorias_id}}
+
+      }          
+     
+      <br>
+   
+    <button type="button" (click)="guardarD(descripcion,monto,fechaTrans,categorias_id)" class="btn btn-primary">Guardar</button>
+  </form>
+  <table class="table">
+    <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Gasto</th>
+        <th scope="col">fechaTransaccion</th>
+        <th scope="col">Categoria</th>
+      </tr>
+    </thead>
+    <tbody>
+        @for (item of busqueda; track $index) {
+            <tr>
+                <th scope="row">{{item.id}}</th>
+                <td>{{item.descripcion}}</td>
+                <td>{{item.fechaTransaccion}}</td>
+                <td>{{item.categoria}}</td>
+              </tr>
+        }
+      
+     
+    </tbody>
+  </table>
+  
+  <div>
+    <label for="4">
+        Buscar
+    </label><input type="date" class="form-control" id="4" #buscar name="buscar" >
+    <button type="button" (click)="buscalo(buscar)" class="btn btn-primary">Buscar</button></div>
+  
+
+</div>
